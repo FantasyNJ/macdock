@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{margin:0;padding:0;}
+        img{border: none;width: 64px;height: 64px;}
+        #docky{width: 100%;height: auto;position: absolute;bottom: 0;text-align: center;}
+    </style>
+</head>
+<body>
+<!-- <input type="text"/>
+<input type="text"/>
+<input type="text"/>
+<input type="text"/>
+<input type="text"/> -->
+<div id="docky">
+    <img src="images/1.png"/>
+    <img src="images/2.png"/>
+    <img src="images/3.png"/>
+    <img src="images/4.png"/>
+    <img src="images/5.png"/>
+</div>
+<script>
+    var oDocky=document.getElementById('docky');
+    var aImg=oDocky.getElementsByTagName('img');
+    var aInp=document.getElementsByTagName('input');
+
+
+    document.onmousemove=function(ev){
+        var ev=ev||event;
+        for(var i=0;i<aImg.length;i++){
+            var x=aImg[i].offsetLeft+aImg[i].offsetWidth/2;
+            var y=aImg[i].offsetTop+aImg[i].offsetHeight/2+oDocky.offsetTop;
+            x=ev.clientX-x;
+            y=ev.clientY-y;
+            var c = Math.sqrt(Math.pow(x,2)+Math.pow(y,2));
+            var scale=1-c/300;
+            if(scale<0.5){
+                scale=0.5;
+            }
+            // aInp[i].value=scale;
+            aImg[i].style.width=128*scale+'px';
+            aImg[i].style.height=128*scale+'px';
+        }
+    }
+</script>
+</body>
+</html>
